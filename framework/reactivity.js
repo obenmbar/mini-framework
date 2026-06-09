@@ -14,6 +14,7 @@ export function createSignal(initialValue) {
    }
 
    const Write = (newValue) => {
+      if (value === newValue) return;
       value = newValue;
       const effectsCopy = new Set(effects);
 
@@ -35,7 +36,6 @@ export function createEffect(effect) {
             effectStack.pop();
             activeEffect = effectStack[effectStack.length - 1] || null;
          }
-
       },
       deps: new Set()
    }
